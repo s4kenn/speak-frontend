@@ -34,6 +34,7 @@ const SearchWithPagination = () => {
   const [totalPages, setTotalPages] = useState(0);
   const [limit, setLimit] = useState(5);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string>("");
 
   useEffect(() => {
     fetchQuestions();
@@ -52,8 +53,9 @@ const SearchWithPagination = () => {
       setQuestions(response.data.questions || []);
       setTotalPages(response.data.total);
       setLoading(false);
-    } catch (error) {
-      console.error("Error fetching questions:", error);
+    } catch (e) {
+      console.error("Error fetching questions:", e);
+      setError(e instanceof Error ? "Server Load" : "Server Load");
       setLoading(false);
     }
   };
@@ -118,7 +120,13 @@ const SearchWithPagination = () => {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {loading ? (
+          {error !== "" ? (
+            <TableRow>
+              <TableCell colSpan={2}>
+                Heavy Load on server. Please wait
+              </TableCell>
+            </TableRow>
+          ) : loading ? (
             <TableRow>
               <TableCell colSpan={2}>
                 <Box
