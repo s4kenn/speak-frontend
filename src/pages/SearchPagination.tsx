@@ -42,9 +42,12 @@ const SearchWithPagination = () => {
   const fetchQuestions = async () => {
     setLoading(true);
     try {
-      const response = await axios.get("http://localhost:5555/api/questions", {
-        params: { page, limit, search },
-      });
+      const response = await axios.get(
+        "https://backend-speakx.onrender.com/api/questions",
+        {
+          params: { page, limit, search },
+        }
+      );
       console.log(response.data);
       setQuestions(response.data.questions || []);
       setTotalPages(response.data.total);
