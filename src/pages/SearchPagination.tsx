@@ -11,6 +11,7 @@ import {
 
 import CircularProgress from "@mui/material/CircularProgress";
 import Box from "@mui/material/Box";
+import Alert from "@mui/material/Alert";
 
 import {
   Table,
@@ -44,7 +45,7 @@ const SearchWithPagination = () => {
     setLoading(true);
     try {
       const response = await axios.get(
-        "https://backend-speakx.onrender.com/api/questions",
+        "https://backend-speakx.onrender.com/api/qestions",
         {
           params: { page, limit, search },
         }
@@ -123,7 +124,9 @@ const SearchWithPagination = () => {
           {error !== "" ? (
             <TableRow>
               <TableCell colSpan={2}>
-                Heavy Load on server. Please wait
+                <Alert severity="warning" style={{ backgroundColor: 'white' }}>
+                  Uh No! Heavy Load on the server. Please refresh in a minute
+                </Alert>
               </TableCell>
             </TableRow>
           ) : loading ? (
