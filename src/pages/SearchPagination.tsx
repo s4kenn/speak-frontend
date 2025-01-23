@@ -45,7 +45,7 @@ const SearchWithPagination = () => {
     setLoading(true);
     try {
       const response = await axios.get(
-        "https://backend-speakx.onrender.com/api/qestions",
+        "https://backend-speakx.onrender.com/api/questions",
         {
           params: { page, limit, search },
         }
@@ -124,7 +124,7 @@ const SearchWithPagination = () => {
           {error !== "" ? (
             <TableRow>
               <TableCell colSpan={2}>
-                <Alert severity="warning" style={{ backgroundColor: 'white' }}>
+                <Alert severity="warning" style={{ backgroundColor: "white" }}>
                   Uh No! Heavy Load on the server. Please refresh in a minute
                 </Alert>
               </TableCell>
